@@ -1,0 +1,24 @@
+﻿@model IEnumerable<HoundsRace.Web.Models.DogEntry>
+
+@{
+    var dogsGrid = new WebGrid(
+            source: Model,
+            defaultSort: "Name",
+            rowsPerPage: 5,
+            ajaxUpdateContainerId: "dogs"
+        );
+}
+
+<h4>Dogs in @Model.First().RaceEventName</h4>
+
+
+<div id="dogs">
+    @dogsGrid.GetHtml(
+    tableStyle: "dogsGrid",
+    headerStyle: "head",
+    columns: dogsGrid.Columns(
+        dogsGrid.Column("Name", canSort: true),
+        dogsGrid.Column("OddsDecimal", canSort: true)
+    )
+)
+</div>
